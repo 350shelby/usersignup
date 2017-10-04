@@ -27,17 +27,17 @@ def validate_info():
         username = username
 
     if len(password) < 3 or len(password) > 20 or password == '' or ' ' in password:
-        password_error = "Invalid Password.  Plese entera password that is between 3-20 characters with no spaces."
+        password_error = "Invalid Password.  Please enter a password that is between 3-20 characters with no spaces."
 
     if  verifypass != password or   verifypass == '':
-        verify_error = "The passwords did not match.  Please re-enter"
+        verify_error = "The passwords did not match.  Please re-enter."
     
     if email != '':
-        if len(email) < 6:
-            email_error = "Invalid email address.  Please re-enter."
-            email = ''
         if '@' not in email or '.' not in email:
             email_error = "Invalid email address.  Please re-enter"
+            email = ''
+        if len(email) < 6:
+            email_error = "Invalid email address.  Please re-enter."
             email = ''
         else:
             email = email
@@ -48,8 +48,6 @@ def validate_info():
         return render_template('index.html',username_error=username_error,
             password_error=password_error,verify_error=verify_error,email_error=email_error,
             username=username,email=email)
-
-
 
 
 @app.route('/welcome')
